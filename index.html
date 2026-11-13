@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rust</title>
+<style>
+:root{color-scheme:dark;--bg:#0e111a;--panel:#171c26;--panel2:#1f2630;--accent:#c66b36;--muted:#97a3b6}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:#eee;font:16px Inter,system-ui,Arial,sans-serif}
+main{min-height:100vh;display:grid;place-items:center;padding:24px}
+.panel{width:min(900px,100%);padding:22px;border-radius:14px;background:linear-gradient(135deg,var(--panel),var(--panel2));display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;box-shadow:0 10px 40px #0008}
+section{padding:18px;border-radius:12px;background:#0003}h1{grid-column:1/-1;margin:0;color:#c66b36;font-size:34px;letter-spacing:5px}h2{margin:0 0 14px;font-size:18px}
+.actions,.field{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+button,select,input{padding:11px 14px;border:0;border-radius:8px;background:#2a2f3a;color:#fff;font:inherit}
+button{cursor:pointer}button:hover{background:#414958}.primary{background:var(--accent)}label{font-size:13px;color:var(--muted)}
+.servers{display:grid;gap:10px}.server{padding:12px;background:#1e232c;border-radius:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}.small{font-size:12px;color:var(--muted)}
+footer{position:fixed;bottom:12px;left:16px;color:#aaa;font-size:12px}
+@media(max-width:760px){.panel{grid-template-columns:1fr}h1{grid-column:auto}.server{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<main><div class="panel">
+<h1>RUST</h1>
+<section><h2>Играть</h2>
+<div class="actions"><button onclick="demo('Новая игра')">Новая игра</button><button onclick="demo('Кампания')">Кампания</button><button onclick="demo('Выживание')">Выживание</button></div>
+<div class="field"><label for="difficulty">Сложность</label><select id="difficulty"><option>Легко</option><option selected>Средне</option><option>Сложно</option></select></div>
+<div class="field"><label for="serverName">Название сервера</label><input id="serverName" placeholder="Имя сервера"></div>
+</section>
+<section><h2>Настройки</h2>
+<div class="field"><label for="graphics">Графика</label><select id="graphics"><option>Минимальная</option><option selected>Средняя</option><option>Высокая</option></select></div>
+<div class="field"><label for="volume">Звук</label><input id="volume" type="range" min="0" max="100" value="70"><span id="volumeVal">70</span></div>
+<div class="field"><label for="control">Управление</label><select id="control"><option>Стандартное</option><option>Клавиатура + мышь</option><option>Геймпад</option></select></div>
+<div class="field"><label for="language">Язык</label><select id="language"><option>Русский</option><option>English</option></select></div>
+</section>
+<section style="grid-column:1/-1"><h2>Сервера (демо)</h2><div class="servers">
+<div class="server"><div><b>EU-1 Fortress</b><div class="small">Пинг: 42 ms • Онлайн: 12/20</div></div><button class="primary" onclick="connect('EU-1 Fortress')">Подключиться</button></div>
+<div class="server"><div><b>NA-2 Delta</b><div class="small">Пинг: 68 ms • Онлайн: 7/20</div></div><button class="primary" onclick="connect('NA-2 Delta')">Подключиться</button></div>
+<div class="server"><div><b>ASIA-3 Night</b><div class="small">Пинг: 120 ms • Онлайн: 3/20</div></div><button class="primary" onclick="connect('ASIA-3 Night')">Подключиться</button></div>
+</div></section>
+</div></main><footer>Rust • Демо-меню 1.0</footer>
+<script>
+const volume=document.getElementById('volume');
+volume.addEventListener('input',()=>document.getElementById('volumeVal').textContent=volume.value);
+function demo(mode){alert(mode+' — демонстрационная кнопка. Это меню, не сама игра Rust.')}
+function connect(server){alert('Демо: подключение к '+server+'. Для реального подключения нужна интеграция с игрой/сервером.')}
+</script>
+</body></html>
